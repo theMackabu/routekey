@@ -1,6 +1,6 @@
 {
 	"production": true,
-	"port": ":3000",
+	"port": ":80",
 	"words": [
 		"abstract",
 		"abyssal",
