@@ -82,7 +82,7 @@ const Home = (props: { title: any }) => {
 							<div tw='inline-block align-bottom bg-white rounded-lg px-4 p-5 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-7xl'>
 								<div tw='mt-3 text-center sm:mt-5 p-6'>
 									<Dialog.Title as='h3' tw='text-[40px] leading-6 font-normal text-black'>
-										routekey.me/
+										rk.ausdk12.org/
 									</Dialog.Title>
 									<div tw='mt-2'>
 										<p tw='p-4 text-[130px] text-black font-bold'>{linkName}</p>
@@ -186,8 +186,8 @@ const Home = (props: { title: any }) => {
 										</span>
 										<p tw='text-lg block text-gray-700'>
 											Go to:{' '}
-											<a tw='text-blue-600' href={`https://www.routekey.me/${linkName}`}>
-												http://www.routekey.me/{linkName}
+											<a tw='text-blue-600' href={`https://rk.ausdk12.org/${linkName}`}>
+												https://rk.ausdk12.org/{linkName}
 											</a>{' '}
 											to use
 										</p>
