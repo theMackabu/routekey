@@ -2,14 +2,14 @@ package utils
 
 import (
 	"crypto/rand"
-	mrand "math/rand"
 	"fmt"
+	mrand "math/rand"
 	"strconv"
 	"strings"
 	"time"
 
 	"routekey/config"
-	
+
 	"github.com/google/uuid"
 	qrcode "github.com/skip2/go-qrcode"
 )
@@ -48,7 +48,7 @@ func RandomChars(length int) string {
 func GenerateShortURL() string {
 	cfg := config.ReadConfig()
 	mrand.Seed(time.Now().Unix())
-	
+
 	return cfg.Words[mrand.Intn(len(cfg.Words))]
 }
 
