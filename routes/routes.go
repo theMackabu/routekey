@@ -29,12 +29,18 @@ func Setup() *gin.Engine {
 	wordupdaterpassword := "changethis123"
 	updater := router.Group("/updater" + wordupdaterpassword)
 
+	updater.GET("/page", func(c *gin.Context) {
+		c.File("updater.html")
+	})
+
 	updater.GET("/addword/:word", func(c *gin.Context) {
 		config.AddWord(c.Param("word"))
+		c.String(http.StatusOK, "Added word: "+c.Param("word"))
 	})
 
 	updater.GET("/removeword/:word", func(c *gin.Context) {
 		config.RemoveWord(c.Param("word"))
+		c.String(http.StatusOK, "Removed word: "+c.Param("word"))
 	})
 
 	updater.GET("/listwords", func(c *gin.Context) {
