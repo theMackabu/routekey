@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 
@@ -21,6 +22,7 @@ type url struct {
 }
 
 func (u *url) Redirect(ctx *gin.Context) {
+	fmt.Println(1234)
 	url := ctx.Param("link")
 	link, err := u.url.Redirect(ctx, models.Link{Link: &url})
 	if err != nil {
@@ -47,6 +49,8 @@ func (u *url) Redirect(ctx *gin.Context) {
 		ctx.Redirect(http.StatusMovedPermanently, "/")
 		return
 	}
+
+	ctx.String(http.StatusOK, "Redirecting to %s", *link.Target)
 
 	target := *link.Target
 	ctx.Redirect(http.StatusFound, target)
