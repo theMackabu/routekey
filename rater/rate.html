@@ -5,8 +5,10 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <style>
+            @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400&display=swap");
+
             body {
-                font-family: Arial, sans-serif;
+                font-family: Manrope, sans-serif;
                 text-align: center;
                 margin: 50px;
             }
@@ -77,16 +79,14 @@
 
     <body>
         <h1>Rate Your Routekey!</h1>
-        <h2>You got: /__routekeyname__</h2>
-        <button onclick="upvote()">Upvote</button>
-        <button onclick="downvote()">Downvote</button>
+        <h2>[__routekeyname__]</h2>
+        <button onclick="upvote()">🔼 i++</button>
+        <button onclick="downvote()">🔽 i--</button>
         <a id="go" style="display: none" href="#">Go</a>
     </body>
 
     <script>
-        console.log(1);
         if (isRated()) {
-            console.log("isRated");
             showGo();
             document.querySelectorAll("button").forEach((button) => {
                 button.style.display = "none";
