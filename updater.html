@@ -1,87 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+    <head>
+        <title>RouteKey - Word List Updater</title>
 
-<head>
-    <title>RouteKey - Word List Updater</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f2f2f2;
+                padding: 20px;
+            }
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            padding: 20px;
-        }
+            h1 {
+                text-align: center;
+            }
 
-        h1 {
-            text-align: center;
-        }
+            input[type="text"] {
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: 2px solid #555;
+                border-radius: 4px;
+            }
 
-        input[type="text"] {
-            padding: 12px 20px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border: 2px solid #555;
-            border-radius: 4px;
-        }
+            button {
+                background-color: #4caf50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
 
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+            button:hover {
+                background-color: #45a049;
+            }
 
-        button:hover {
-            background-color: #45a049;
-        }
+            .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+            button.list {
+                background-color: #228b22;
+                margin-top: 20px;
+            }
+        </style>
+    </head>
 
-        button.list {
-            background-color: #228B22;
-            margin-top: 20px;
-        }
-    </style>
+    <body>
+        <h1>RouteKey - Word List Updater</h1>
 
-</head>
+        <div class="container">
+            <input type="text" id="wordInput" />
 
-<body>
+            <button onclick="goToAdd()">Add Word</button>
+            <button onclick="goToRemove()">Remove Word</button>
 
-    <h1>RouteKey - Word List Updater</h1>
+            <button class="list" onclick="goToList()">List Words</button>
+        </div>
 
-    <div class="container">
+        <script>
+            function goToAdd() {
+                let word = document.getElementById("wordInput").value;
+                window.location.href = "/updaterchangethis123/addword/" + word;
+            }
 
-        <input type="text" id="wordInput">
+            function goToRemove() {
+                let word = document.getElementById("wordInput").value;
+                window.location.href =
+                    "/updaterchangethis123/removeword/" + word;
+            }
 
-        <button onclick="goToAdd()">Add Word</button>
-        <button onclick="goToRemove()">Remove Word</button>
-
-        <button class="list" onclick="goToList()">List Words</button>
-
-    </div>
-
-    <script>
-        function goToAdd() {
-            let word = document.getElementById("wordInput").value;
-            window.location.href = "/updaterchangethis123/addword/" + word;
-        }
-
-        function goToRemove() {
-            let word = document.getElementById("wordInput").value;
-            window.location.href = "/updaterchangethis123/removeword/" + word;
-        }
-
-        function goToList() {
-            window.location.href = "/updaterchangethis123/listwords";
-        }
-    </script>
-
-</body>
-
+            function goToList() {
+                window.location.href = "/updaterchangethis123/listwords";
+            }
+        </script>
+    </body>
 </html>

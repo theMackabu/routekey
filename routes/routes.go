@@ -1,11 +1,13 @@
 package routes
 
 import (
+	"fmt"
 	"routekey/client"
 	"routekey/config"
 	"routekey/controllers"
 	"routekey/helpers"
 	"routekey/middlewares"
+	"routekey/rater"
 	"routekey/services"
 
 	"net/http"
@@ -48,6 +50,21 @@ func Setup() *gin.Engine {
 		c.JSON(http.StatusOK, words)
 	})
 	// ------- END word updater code -------
+
+	// ------- ratergroup code - blobbybilb -------
+	ratergroup := router.Group("/rate")
+
+	ratergroup.GET("/nicekey/:key", func(c *gin.Context) {
+		key := c.Param("key")
+		rater.IncrementWordScore(key)
+		fmt.Println(rater.GetWordScore(key))
+	})
+
+	ratergroup.GET("/sadkey/:key", func(c *gin.Context) {
+		key := c.Param("key")
+		rater.DecrementWordScore(key)
+	})
+	// ------- END rater code -------
 
 	router.GET("/:link", func(c *gin.Context) {
 		svc.URLService().Redirect(c)
