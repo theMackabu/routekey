@@ -1,7 +1,10 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
+	"os"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -21,6 +24,7 @@ type url struct {
 }
 
 func (u *url) Redirect(ctx *gin.Context) {
+	fmt.Println(1234)
 	url := ctx.Param("link")
 	link, err := u.url.Redirect(ctx, models.Link{Link: &url})
 	if err != nil {
@@ -48,8 +52,15 @@ func (u *url) Redirect(ctx *gin.Context) {
 		return
 	}
 
-	target := *link.Target
-	ctx.Redirect(http.StatusFound, target)
+	raterFile, _ := os.ReadFile("./rater/rate.html")
+	raterString := string(raterFile)
+	raterString = strings.ReplaceAll(raterString, "__routekeyname__", *link.Link)
+	raterString = strings.ReplaceAll(raterString, "__routekeylink__", *link.Target)
+
+	ctx.Data(http.StatusOK, "text/html; charset=utf-8", []byte(raterString))
+
+	// target := *link.Target
+	// ctx.Redirect(http.StatusFound, target)
 }
 
 func (u *url) Track(ctx *gin.Context) {

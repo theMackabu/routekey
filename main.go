@@ -1,29 +1,29 @@
 package main
 
 import (
+	"routekey/config"
 	"routekey/database"
 	"routekey/models"
 	"routekey/routes"
-	"routekey/config"
-	
+
 	"github.com/gin-gonic/gin"
 
-	"time"
 	"log"
 	"strconv"
+	"time"
 )
 
 var startTime time.Time = time.Now()
 
+var cfg = config.ReadConfig()
+
 func main() {
-	cfg := config.ReadConfig()
-	
 	if cfg.Production {
 		gin.SetMode(gin.ReleaseMode)
 	} else {
 		gin.SetMode(gin.DebugMode)
 	}
-	
+
 	_ = database.Initialize()
 
 	database.AuthDB.AutoMigrate(&models.User{})

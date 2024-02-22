@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Rate Your Routekey!</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400&display=swap");
+
+            body {
+                font-family: Manrope, sans-serif;
+                text-align: center;
+                margin: 50px;
+            }
+
+            h1 {
+                color: #333;
+            }
+
+            h2 {
+                color: #666;
+            }
+
+            button {
+                padding: 10px 20px;
+                margin: 10px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            #go {
+                text-decoration: none;
+                color: #fff;
+                background-color: #3498db;
+                padding: 10px 20px;
+                margin-top: 20px;
+                display: inline-block;
+            }
+        </style>
+
+        <script>
+            const routeKeyName = "__routekeyname__";
+            const routeKeyLink = "__routekeylink__";
+
+            function setRated() {
+                localStorage.setItem(routeKeyName, true);
+            }
+
+            function isRated() {
+                return localStorage.getItem(routeKeyName) == "true";
+            }
+
+            function upvote() {
+                showGo();
+                if (isRated()) return;
+                fetch("/rate/nicekey/" + routeKeyName);
+                document.querySelectorAll("button").forEach((button) => {
+                    button.style.display = "none";
+                });
+                setRated();
+            }
+
+            function downvote() {
+                showGo();
+                if (isRated()) return;
+                fetch("/rate/sadkey/" + routeKeyName);
+                document.querySelectorAll("button").forEach((button) => {
+                    button.style.display = "none";
+                });
+                setRated();
+            }
+
+            function showGo() {
+                document.getElementById("go").style.display = "block";
+                document.getElementById("go").href = routeKeyLink;
+            }
+        </script>
+    </head>
+
+    <body>
+        <h1>Rate Your Routekey!</h1>
+        <h2>[__routekeyname__]</h2>
+        <button onclick="upvote()">🔼 i++</button>
+        <button onclick="downvote()">🔽 i--</button>
+        <a id="go" style="display: none" href="#">Go</a>
+    </body>
+
+    <script>
+        if (isRated()) {
+            showGo();
+            document.querySelectorAll("button").forEach((button) => {
+                button.style.display = "none";
+            });
+        }
+    </script>
+</html>
