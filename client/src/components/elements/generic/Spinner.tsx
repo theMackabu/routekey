@@ -6,13 +6,13 @@ import tw from 'twin.macro';
 export type SpinnerSize = 'small' | 'base' | 'large' | 'xsmall';
 
 interface Props {
-	size?: SpinnerSize;
-	centered?: boolean;
-	isBlue?: boolean;
+   size?: SpinnerSize;
+   centered?: boolean;
+   isBlue?: boolean;
 }
 
 interface Spinner extends React.FC<Props> {
-	Size: Record<'SMALL' | 'BASE' | 'LARGE' | 'XSMALL', SpinnerSize>;
+   Size: Record<'SMALL' | 'BASE' | 'LARGE' | 'XSMALL', SpinnerSize>;
 }
 
 const spin = keyframes`
@@ -26,37 +26,37 @@ const SpinnerComponent = styled.div<Props>`
 	border-radius: 50%;
 	animation: ${spin} 1s cubic-bezier(0.55, 0.25, 0.25, 0.7) infinite;
 
-	${(props) =>
-		props.size === 'small'
-			? tw`w-4 h-4 border-2`
-			: props.size === 'large'
-			? css`
+	${props =>
+      props.size === 'small'
+         ? tw`w-4 h-4 border-2`
+         : props.size === 'large'
+           ? css`
 					${tw`w-16 h-16`};
 					border-width: 6px;
 			  `
-			: props.size === 'xsmall'
-			? tw`w-2 h-2 border`
-			: null};
+           : props.size === 'xsmall'
+             ? tw`w-2 h-2 border`
+             : null};
 
-	border-color: ${(props) => (!props.isBlue ? 'rgba(255, 255, 255, 0.2)' : 'hsla(212, 92%, 43%, 0.2)')};
-	border-top-color: ${(props) => (!props.isBlue ? 'rgb(255, 255, 255)' : 'hsl(212, 92%, 43%)')};
+	border-color: ${props => (!props.isBlue ? 'rgba(255, 255, 255, 0.2)' : 'hsla(212, 92%, 43%, 0.2)')};
+	border-top-color: ${props => (!props.isBlue ? 'rgb(255, 255, 255)' : 'hsl(212, 92%, 43%)')};
 `;
 
 const Spinner: Spinner = ({ centered, ...props }) =>
-	centered ? (
-		<div css={[tw`flex justify-center items-center`, props.size === 'large' ? tw`m-20` : tw`m-6`]}>
-			<SpinnerComponent {...props} />
-		</div>
-	) : (
-		<SpinnerComponent {...props} />
-	);
+   centered ? (
+      <div css={[tw`flex justify-center items-center`, props.size === 'large' ? tw`m-20` : tw`m-6`]}>
+         <SpinnerComponent {...props} />
+      </div>
+   ) : (
+      <SpinnerComponent {...props} />
+   );
 Spinner.displayName = 'Spinner';
 
 Spinner.Size = {
-	SMALL: 'small',
-	BASE: 'base',
-	LARGE: 'large',
-	XSMALL: 'xsmall',
+   SMALL: 'small',
+   BASE: 'base',
+   LARGE: 'large',
+   XSMALL: 'xsmall'
 };
 
 export default Spinner;

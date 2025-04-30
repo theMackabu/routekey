@@ -64,7 +64,7 @@ func (u *url) GenQR(ctx *gin.Context) {
 	var qr models.QRCode
 	qr.Content = ctx.Param("link")
 	hostname := ctx.Request.Host
-	qr.Content = "http://" + hostname + "/" + qr.Content
+	qr.Content = "https://" + hostname + "/" + qr.Content
 	qr, err := u.url.GenQR(ctx, qr)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, models.Error{

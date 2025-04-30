@@ -30,7 +30,7 @@ func (t *trackers) GenerateTracker(ctx *gin.Context) {
 	ip := ctx.ClientIP()
 	tracker.IP = &ip
 	hostname := ctx.Request.Host
-	url := "http://" + hostname + "/api/v1/trackers/" + tracker.ID + "/qr.png"
+	url := "https://" + hostname + "/api/v1/trackers/" + tracker.ID + "/qr.png"
 	tracker.URL = url
 
 	err = t.track.GenerateTracker(ctx, &tracker)
